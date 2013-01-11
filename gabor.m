@@ -15,6 +15,7 @@
 %
 %   Parameters (Default):
 %       theta (2*pi*rand): orientation of the gabor patch
+%       phi   (2*pi*rand): phase of the sinusoid
 %       lambda (20): spatial wavelength
 %       Sigma (10): standard deviation of gaussian window
 %       width (256): width of generated image
@@ -25,7 +26,7 @@
 % EXAMPLE
 %   [x y F] = gabor;
 %   pcolor(x,y,F); axis image;
-%   shading('interp'); colormap copper;
+%   shading('interp'); colormap gray;
 %
 % VERSION 1.1, Thu Jan 10 17:47:35 2013     Added ability to modify the phase of the sinusoid
 % VERSION 1.0, Thu Jul 12 09:47:52 2012     Initial version
