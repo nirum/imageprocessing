@@ -27,16 +27,18 @@
 %   pcolor(x,y,F); axis image;
 %   shading('interp'); colormap copper;
 %
-% VERSION 1.0, Thu Jul 12 09:47:52 2012
+% VERSION 1.1, Thu Jan 10 17:47:35 2013     Added ability to modify the phase of the sinusoid
+% VERSION 1.0, Thu Jul 12 09:47:52 2012     Initial version
 %
 % AUTHOR: Niru Maheswaranathan
 %         nirum@stanford.edu
 
 function [x y F] = gabor(varargin)
 
-    % Parse Input
+    % Parse arguments using Matlab's inputParser
     p = inputParser;
     addParamValue(p,'theta',2*pi*rand,@isnumeric);
+    addParamValue(p,'phi',2*pi*rand,@isnumeric);
     addParamValue(p,'lambda',20,@isnumeric);
     addParamValue(p,'Sigma',10,@isnumeric);
     addParamValue(p,'width',256,@isnumeric);
@@ -58,7 +60,7 @@ function [x y F] = gabor(varargin)
     y_theta=-(x-cx)*sin(p.Results.theta)+(y-cy)*cos(p.Results.theta);
 
     % Generate gabor
-    F = exp(-.5*(x_theta.^2/p.Results.Sigma^2+y_theta.^2/p.Results.Sigma^2)).*cos(2*pi/p.Results.lambda*x_theta);
+    F = exp(-.5*(x_theta.^2/p.Results.Sigma^2+y_theta.^2/p.Results.Sigma^2)).*cos(2*pi/p.Results.lambda*x_theta + p.Results.phi);
 
     % normalize
     F = F./norm(F(:));
