@@ -11,5 +11,9 @@
 % Add path to helper functions
 addpath('helper_functions/');
 
-% Location of van Hateren .iml image database
+% Location of van Hateren image database
 vanhateren = '~/Documents/Data/images/';
+
+% Type of images (linear or calibrated, .iml or .imc)
+imgtype = '.iml';
+

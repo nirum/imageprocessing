@@ -33,8 +33,8 @@ function img = loadimage(idx, rescale)
     w = 1536; h = 1024;
 
     % generate filename (prefix must be loaded from setup.m!)
-    setup;
-    fname = [vanhateren sprintf('imk%05.0f.iml',idx)];              % load filename
+    setupIPT;
+    fname = [vanhateren sprintf('imk%05.0f',idx) imgtype];              % load filename
 
     % load file
     file = fopen(fname,'rb','ieee-be');                             % open file
