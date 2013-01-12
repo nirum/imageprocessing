@@ -149,9 +149,10 @@ function X = generate_samples(num_samples, patch_size, varargin);
                 bad_img = 1;
                 while bad_img
                     try
-                        img = loadimage(randi(4212),1);
+                        img = loadimage(randi(4212),true);
                         bad_img = 0;
                     catch exception
+                        warning('Caught an invalid file index. Trying a new one.');
                     end
                 end
 
