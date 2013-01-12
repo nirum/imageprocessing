@@ -1,4 +1,4 @@
-## Image Processing toolbox
+## [Image Processing toolbox](http://niru.org/imageprocessing/)
 
 **written by Niru Maheswaranathan (nirum@stanford.edu)**  
 
