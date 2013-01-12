@@ -33,16 +33,39 @@
       <section id="main_content" class="inner">
         <p><strong>written by Niru Maheswaranathan (<a href="mailto:nirum@stanford.edu">nirum@stanford.edu</a>)</strong>  </p>
 
-<p>This toolbox contains some useful scripts for generating and processing image ensembles in Matlab. Right now it is empty but there is a lot more to come.</p>
+<p>This toolbox contains some useful scripts for generating and processing image ensembles in Matlab.</p>
+
+<hr><h4>Setup</h4>
+
+<ol>
+<li>This toolbox uses images from the van Hateren natural image database. Download the images from <a href="http://bethgelab.org/datasets/vanhateren/">the Bethge lab</a>. A mirror is also hosted by Paul Ivanov <a href="http://pirsquared.org/research/vhatdb/">at his website</a>.</li>
+<li>Specify the path to the image set you want to use (either the linearized .iml images or the deblurred, or calibrated, .imc images) in <strong>setupIPT.m</strong>
+</li>
+<li>Make sure to run <strong>setupIPT.m</strong> before using the toolbox. You can add the entire toolbox to your path using <strong>pathtool</strong> in Matlab.</li>
+</ol><h4>Requirements</h4>
+
+<p>To use the toolbox, you'll need a copy of Matlab. I haven't figured out exactly what versions are supported yet. It might also work with Octave.</p>
 
 <hr><h4>List of functions</h4>
 
+<p>Secondary helper functions included in the <em>helper_functions</em> folder are not included in this list.</p>
+
 <ul>
-<li>gabor.m <em>Generates a 2D gabor function</em>
-</li>
+<li>
+<strong>setupIPT.m</strong> Sets up some paths for the imageprocessing toolbox (IPT). Run this before using the toolbox!</li>
+<li>
+<strong>generate_samples.m</strong> Generates (or samples) image patches from different model classes (gaussian noise, pink noise, natural images, or the dead leaves model)</li>
+<li>
+<strong>loadimage.m</strong> Loads an image from the van Hateren database</li>
+<li>
+<strong>oneoverf.m</strong> Generates 1/f noise (from Lawrence Cormack)</li>
+<li>
+<strong>plot_patches.m</strong> Plots rows of a matrix as images in a grid. Useful for visualizing the output of generate_samples.m</li>
+<li>
+<strong>gabor.m</strong> Generates a 2D gabor function</li>
 </ul><hr><h4>License</h4>
 
-<p>This code is provided for non-commercial research use only. There are no guarantees that anything works. Feel free to use/modify to your heart's content.</p>
+<p>This code is provided for non-commercial research use only. There are no guarantees that anything works, but let me know if something doesn't work and I will fix it.</p>
       </section>
     </div>
 
