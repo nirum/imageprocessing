@@ -9,7 +9,7 @@
 %         nirum@stanford.edu
 
 % Add path to helper functions
-addpath('helper_functions/');
+addpath('~/Documents/Code/toolbox/imageprocessing/helper_functions/');
 
 % Location of van Hateren image database
 vanhateren = '~/Documents/Data/images/';

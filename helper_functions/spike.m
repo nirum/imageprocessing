@@ -40,5 +40,3 @@ x = linspace(-c./2, c./2, c);
 
 dists = sqrt(X.^2 + Y.^2);
 s = s./dists.^alpha;
-
-
