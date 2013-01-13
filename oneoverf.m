@@ -28,7 +28,6 @@ function y = oneoverf(a, r, c)
 % 4/1/02        lkc     changed the way the spectrum is generated to the more intuitive
 %                       amp/phase based-method, but it makes no functional difference.
 % 2/19/10       tbc     changed "i" to "1i" per matlab speed suggestion
-addpath('helper_functions/');
 
 %*** deal with oddity ***
 codd = 0; rodd = 0;

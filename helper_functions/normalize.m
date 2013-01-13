@@ -22,5 +22,6 @@ function zimg = normalize(img)
     if std(img(:)) > eps
         zimg = (img - mean(img(:)))./std(img(:));
     else
-        error('Std dev. is too small.');
+        zimg = img - mean(img(:));
+        warning('Std dev. is too small.');
     end
