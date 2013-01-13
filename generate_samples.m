@@ -45,7 +45,7 @@
 function X = generate_samples(num_samples, patch_size, varargin);
 
     % Set up parameters
-    setup;
+    setupIPT;
     p = inputParser;
     img_models = {'gaussian','natural','deadleaves','pink'};
     defaultModel = 'gaussian';
