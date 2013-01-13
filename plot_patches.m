@@ -45,7 +45,7 @@ function h = plot_patches(X,num,shuffle)
 
     for j = 1:size(X,1)
         subplot(n,m,j);
-        h(j) = imagesc(reshape(X(j,:),D,D), [min(X(:)), max(X(:))]);
+        h(j) = imagesc(reshape(X(j,:),D,D));
         set(gca,'XTick',[],'YTick',[]);
         axis image;
     end

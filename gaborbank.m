@@ -1,52 +1,77 @@
 %Generates a bank of gabor filters
 %
+% USAGE:
+%   F = gaborbank(32, 'numOrientations', 8, 'numPhases', 10);
+%
+% PARAMETERS:
+%   'numOrientations' number of orientations between 0 and 2*pi
+%   'numPhases' number of phases between 0 and 2*pi
+%   'numLambdas' number of spatial scales, from 'lambdaStart' to 'lambdaEnd'
+%   'numScales' number of gaussian windowing scales from 'scaleStart' to 'scaleEnd'
+%
+% VERSION 1.0, Sat Jan 12 19:19:51 2013         Initial version
+%
 % AUTHOR: Niru Maheswaranathan
 %         nirum@stanford.edu
 
-width = 64;
-height = 64;
+function F = gaborbank(dim, varargin)
 
-thetas = 0;
-phis = linspace(0,2*pi,11);
-lambdas = round(logspace(1, 2, 6));
-Sigmas = 10;
-pxs = 0.5;
-pys = 0.5;
-%pxs = 0.1:0.2:0.9;
-%pys = 0.1:0.2:0.9;
+    % Set up parameters
+    p = inputParser;
+    addRequired(p,'dim',@isnumeric);
+    addOptional(p,'numOrientations',1,@isnumeric);
+    addOptional(p,'numPhases',1,@isnumeric);
 
-numGabors = length(thetas)*length(phis)*length(lambdas)*length(Sigmas)*length(pxs)*length(pys);
-gabors = zeros(numGabors, width*height);
-gidx = 1;
+    addOptional(p,'numScales',1,@isnumeric);
+    addOptional(p,'scaleStart',1,@isnumeric);
+    addOptional(p,'scaleEnd',10,@isnumeric);
 
-for tidx = 1:length(thetas)
-    for pidx = 1:length(phis)
-        for lidx = 1:length(lambdas)
-            for sidx = 1:length(Sigmas)
-                for xidx = 1:length(pxs)
-                    for yidx = 1:length(pys)
+    addOptional(p,'numLambdas',1,@isnumeric);
+    addOptional(p,'lambdaStart',1,@isnumeric);
+    addOptional(p,'lambdaEnd',10,@isnumeric);
 
-                        % generate gabor
-                        [x y F] = gabor('theta',  thetas(tidx),  ...
-                                        'phi',    phis(pidx),    ...
-                                        'lambda', lambdas(lidx), ...
-                                        'Sigma',  Sigmas(sidx),  ...
-                                        'px',     pxs(xidx),     ...
-                                        'py',     pys(yidx),     ...
-                                        'width',  width,         ...
-                                        'height', height         ...
-                                        );
+    % Parse inputs
+    parse(p, dim, varargin{:});
+    dim = p.Results.dim;
+    numOrientations = p.Results.numOrientations;
+    numPhases = p.Results.numPhases;
+    numScales = p.Results.numScales;
+    numLambdas = p.Results.numLambdas;
 
-                        % store the function
-                        gabors(gidx,:) = F(:)';
-                        gidx = gidx + 1;
+    % Make parameter vectors
+    thetas = linspace(0, 2*pi, numOrientations);                                    % orientations
+    phis = linspace(0, 2*pi, numPhases);                                            % phases
+    Sigmas = linspace(p.Results.scaleStart, p.Results.scaleEnd, numScales);         % gaussian windows
+    lambdas = linspace(p.Results.lambdaStart, p.Results.lambdaEnd, numLambdas);     % scales
 
-                        % update progress
-                        progressbar(gidx, numGabors, 50);
+    % number of filters
+    numFilters = length(thetas)*length(phis)*length(lambdas)*length(Sigmas);
 
-                    end
+    % generate filters
+    F = zeros(numFilters, dim^2);
+    filterIdx = 1;
+
+    for tidx = 1:length(thetas)
+        for pidx = 1:length(phis)
+            for lidx = 1:length(lambdas)
+                for sidx = 1:length(Sigmas)
+
+                    % generate gabor
+                    [x y z] = gabor('theta',  thetas(tidx),   ...
+                                    'phi',    phis(pidx),     ...
+                                     'lambda', lambdas(lidx), ...
+                                     'Sigma',  Sigmas(sidx),  ...
+                                     'px',     0.5,           ...
+                                     'py',     0.5,           ...
+                                     'width',  dim,           ...
+                                     'height', dim            ...
+                                     );
+
+                    % store the function
+                    F(filterIdx,:) = z(:)';
+                    filterIdx = filterIdx + 1;
+
                 end
             end
         end
     end
-end
