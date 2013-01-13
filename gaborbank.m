@@ -39,12 +39,13 @@ function F = gaborbank(dim, varargin)
     numLambdas = p.Results.numLambdas;
 
     % Make parameter vectors
-    thetas = linspace(0, 2*pi, numOrientations);                                    % orientations
-    phis = linspace(0, 2*pi, numPhases);                                            % phases
+    thetas = linspace(0, pi, numOrientations + 1);                                  % orientations
+    phis = linspace(0, 2*pi, numPhases + 1);                                        % phases
     Sigmas = linspace(p.Results.scaleStart, p.Results.scaleEnd, numScales);         % gaussian windows
     lambdas = linspace(p.Results.lambdaStart, p.Results.lambdaEnd, numLambdas);     % scales
 
     % number of filters
+    thetas = thetas(2:end); phis = phis(2:end);
     numFilters = length(thetas)*length(phis)*length(lambdas)*length(Sigmas);
 
     % generate filters
