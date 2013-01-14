@@ -28,6 +28,7 @@
 %   pcolor(x,y,F); axis image;
 %   shading('interp'); colormap gray;
 %
+% VERSION 1.2, Mon Jan 14 11:38:25 2013     Switched over to normalized units
 % VERSION 1.1, Thu Jan 10 17:47:35 2013     Added ability to modify the phase of the sinusoid
 % VERSION 1.0, Thu Jul 12 09:47:52 2012     Initial version
 %
