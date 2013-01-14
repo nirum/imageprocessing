@@ -14,14 +14,14 @@
 %       F: gabor function evaluated at (x,y) points
 %
 %   Parameters (Default):
-%       theta (2*pi*rand): orientation of the gabor patch
-%       phi   (2*pi*rand): phase of the sinusoid
-%       lambda (20): spatial wavelength
-%       Sigma (10): standard deviation of gaussian window
-%       width (256): width of generated image
+%       theta  (2*pi): orientation of the gabor patch
+%       phi    (2*pi): phase of the sinusoid
+%       omega  (3): spatial frequency, in normalized units
+%       sigma  (0.1): standard deviation of gaussian window, in normalized units
+%       width  (256): width of generated image
 %       height (256): height of generated image
-%       px (rand): horizontal center of gabor patch, relative to the image width (must be between 0 and 1)
-%       py (rand): vertical center of gabor patch, relative to the image height (must be between 0 and 1)
+%       px     (0.5): horizontal center of gabor patch, relative to the image width (must be between 0 and 1)
+%       py     (0.5): vertical center of gabor patch, relative to the image height (must be between 0 and 1)
 %
 % EXAMPLE
 %   [x y F] = gabor;
@@ -38,30 +38,30 @@ function [x y F] = gabor(varargin)
 
     % Parse arguments using Matlab's inputParser
     p = inputParser;
-    addParamValue(p,'theta',2*pi*rand,@isnumeric);
-    addParamValue(p,'phi',2*pi*rand,@isnumeric);
-    addParamValue(p,'lambda',20,@isnumeric);
-    addParamValue(p,'Sigma',10,@isnumeric);
+    addParamValue(p,'theta',2*pi,@isnumeric);
+    addParamValue(p,'phi',2*pi,@isnumeric);
+    addParamValue(p,'omega',3,@isnumeric);
+    addParamValue(p,'sigma',0.1,@isnumeric);
     addParamValue(p,'width',256,@isnumeric);
     addParamValue(p,'height',256,@isnumeric);
-    addParamValue(p,'px',rand*0.8 + 0.1,@isnumeric);
-    addParamValue(p,'py',rand*0.8 + 0.1,@isnumeric);
+    addParamValue(p,'px',0.5,@isnumeric);
+    addParamValue(p,'py',0.5,@isnumeric);
     p.KeepUnmatched = true;
     parse(p,varargin{:});
 
     % Generate mesh
-    [x y] = meshgrid(1:p.Results.width, 1:p.Results.height);
+    [x y] = meshgrid(linspace(0,1,p.Results.width), linspace(0,1,p.Results.height));
 
     % Center of gaussian window
-    cx = p.Results.px*p.Results.width;
-    cy = p.Results.py*p.Results.height;
+    cx = p.Results.px;
+    cy = p.Results.py;
 
     % Orientation
     x_theta=(x-cx)*cos(p.Results.theta)+(y-cy)*sin(p.Results.theta);
     y_theta=-(x-cx)*sin(p.Results.theta)+(y-cy)*cos(p.Results.theta);
 
     % Generate gabor
-    F = exp(-.5*(x_theta.^2/p.Results.Sigma^2+y_theta.^2/p.Results.Sigma^2)).*cos(2*pi/p.Results.lambda*x_theta + p.Results.phi);
+    F = exp(-.5*(x_theta.^2/p.Results.sigma^2+y_theta.^2/p.Results.sigma^2)).*cos(2*pi*p.Results.omega*x_theta + p.Results.phi);
 
     % normalize
     F = F./norm(F(:));
