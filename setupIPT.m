@@ -8,12 +8,13 @@
 % AUTHOR: Niru Maheswaranathan
 %         nirum@stanford.edu
 
-% Add path to helper functions
+% Add path to other functions
 addpath('~/Documents/Code/toolbox/imageprocessing/helper_functions/');
+addpath('~/Documents/Code/toolbox/imageprocessing/kovesi/phase');
+addpath('~/Documents/Code/toolbox/imageprocessing/kovesi/freq');
 
 % Location of van Hateren image database
 vanhateren = '~/Documents/Data/images/';
 
 % Type of images (linear or calibrated, .iml or .imc)
 imgtype = '.iml';
-
