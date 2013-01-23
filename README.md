@@ -1,6 +1,6 @@
 ## [Image Processing toolbox](http://niru.org/imageprocessing/)
 
-**written by Niru Maheswaranathan (nirum@stanford.edu)**  
+**written by Niru Maheswaranathan (nirum@stanford.edu)**
 
 This toolbox contains some useful scripts for generating and processing image ensembles in Matlab.
 
@@ -22,6 +22,8 @@ Secondary helper functions included in the *helper_functions* folder are not inc
 - **loadimage.m** Loads an image from the van Hateren database
 - **oneoverf.m** Generates 1/f noise (from Lawrence Cormack)
 - **plot_patches.m** Plots rows of a matrix as images in a grid. Useful for visualizing the output of generate_samples.m
+- **downsample2.m** 2D downsampling function
+- **upsample2.m** 2D upsampling function
 - **gabor.m** Generates a 2D gabor function
 
 ***
