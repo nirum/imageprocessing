@@ -17,12 +17,12 @@
 
 function ds_img = downsample2(img, xfactor, yfactor)
 
-    if nargin < 3
-        yfactor = 2;
-    end
-
     if nargin < 2
         xfactor = 2;
+    end
+
+    if nargin < 3
+        yfactor = xfactor;
     end
 
     if nargin == 0
