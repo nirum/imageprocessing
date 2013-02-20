@@ -64,6 +64,10 @@ function [x y F] = gabor(varargin)
     % Generate gabor
     F = exp(-.5*(x_theta.^2/p.Results.sigma^2+y_theta.^2/p.Results.sigma^2)).*cos(2*pi*p.Results.omega*x_theta + p.Results.phi);
 
+    % cutoff low values to zero
+    tol = 1e-2;
+    F(abs(F) <= tol) = 0;
+
     % normalize
     F = F./norm(F(:));
 
