@@ -9,12 +9,12 @@
 %         nirum@stanford.edu
 
 % Add path to other functions
-addpath('~/Documents/Code/toolbox/imageprocessing/helper_functions/');
-addpath('~/Documents/Code/toolbox/imageprocessing/kovesi/phase');
-addpath('~/Documents/Code/toolbox/imageprocessing/kovesi/freq');
+addpath('~/code/toolbox/imageprocessing/helper_functions/');
+addpath('~/code/toolbox/imageprocessing/kovesi/phase');
+addpath('~/code/toolbox/imageprocessing/kovesi/freq');
 
 % Location of van Hateren image database
-vanhateren = '~/Documents/Data/images/';
+vanhateren = '~/Documents/data/images/';
 
 % Type of images (linear or calibrated, .iml or .imc)
 imgtype = '.iml';
